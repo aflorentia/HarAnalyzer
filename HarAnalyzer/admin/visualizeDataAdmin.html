@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Har Analyzer</title>
+  <link rel="stylesheet" href="bootstrap-4.1.3-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/fixed.css">
+  <!--  mapping Leaflet js-->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+  <!--  -------------------------------------- -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+<!--  <link rel="stylesheet" href="user.css">-->
+
+  <!--  mapping Leaflet js-->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+          integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+          crossorigin=""></script>
+  <!--  <script src="./heatmap.js"></script>-->
+  <!--  <script src="./leaflet-heat.js"></script>-->
+  <script src="/HarAnalyzer/admin/heatmap.js-2.0.5/build/heatmap.js"></script>
+  <script src="/HarAnalyzer/admin/heatmap.js-2.0.5/plugins/leaflet-heatmap/leaflet-heatmap.js"></script>
+  <!--  <script src="http://cdn.leafletjs.com/leaflet/v1.0.0-rc.1/leaflet-src.js"></script>-->
+  <script src="https://leaflet.github.io/Leaflet.markercluster/example/realworld.10000.js"></script>
+  <!-- ----------------------------------------------- -->
+
+  <script src="connectionCheck.js"></script>
+    <script>   connectionCheck();    </script>
+    
+  <link rel="stylesheet" href="timeAnalysis.css">
+  <!--  <link rel="stylesheet" href="map.css">-->
+  <style>
+    #map {
+        height: 950px;
+        /*height: 100%;*/
+        width: 100%;
+
+        /*width: 75%;*/
+        display: block;
+
+        margin-top: 75px;
+        margin-left: 150px;
+        margin-right: 150px;
+        margin-bottom: 75px;
+
+    }
+    .leaflet-container {
+      background: rgba(0,0,0,.8) !important;
+    }
+  </style>
+
+
+
+</head>
+<body data-target="#navbarResponsive">
+<div id="user">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+   <div class="container-fluid ">
+            <a class="navbar-brand" href="admin.html"><img src="logo.png"></a>
+            <div class="title">
+                <div>Har Analyzer</div>
+            </div>
+            <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon "></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="admin.html" class="nav-link">Home</a>
+                    </li>
+
+                    <li class="nav-item hid" >
+                        <a href="getAdminData.php" class="nav-link">  User's Statistics </a>
+                    </li>
+
+                    <li class="nav-item hid" >
+                        <a href="visualizeDataAdmin.html" class="nav-link"> Visualize Data </a>
+                    </li>
+
+                    <li class="nav-item hid" >
+                        <a href="timeAnalysis.php" class="nav-link"> Time Analysis </a>
+                    </li>
+
+                    <li class="nav-item hid" >
+                        <a href="headersAnalyze.html" class="nav-link"> Analyze Headers </a>
+                    </li>
+					
+                    <li class="nav-item hid" >
+                        <a href="logout.php" class="nav-link">Log Out</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+  </nav>
+
+<!--  <div class="landing">-->
+<!--    <div class="home-wrap">-->
+<!--      <div class="home-inner"></div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+</div>
+
+
+
+<script>
+  var req = new XMLHttpRequest();
+  req.onload = function() {
+    // console.log(this.responseText);
+    let array = this.responseText;
+    let coord = JSON.parse(array);
+    // console.log(coord,"before");
+
+    // for (let i=0; i<coord.length; i++){
+    //   coord[i]["count"]  = 1;
+    // }
+
+    console.log(coord,"after");
+    // console.log(coord=>coord.weight);
+
+    coord.sort((c1, c2) => (c1.weight < c2.weight) ? 1 : (c1.weight > c2.weight) ? -1 : 0);
+    // console.log(coord);
+
+    let popular = coord[0].weight;
+    console.log(popular);
+
+    let testData = {
+      max: 8,
+      data: coord
+    };
+    // console.log(JSON.parse(array).length);
+
+    var map = L.map('map').setView([0, 0], 2);
+    var baseLayer = L.tileLayer(
+            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+              attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+              maxZoom: 18,
+              id: 'mapbox/streets-v11',
+              tileSize: 512,
+              zoomOffset: -1,
+              accessToken: 'pk.eyJ1IjoiZmxvcmVudGlhIiwiYSI6ImNrcmo4cm03ODA3Z20yd2xmcXg4N2puMzUifQ.64L3hzlU3W_TkQrDU4FQfQ'
+            }
+    ).addTo(map);
+
+    coord.forEach(
+      function kappa(element){
+        
+        if (!isNaN(element['lat']) || !isNaN(element['lon'] )){
+        
+        L.marker([element['lat'],element['lon']]).addTo(map) 
+        }
+      }
+    );
+    // var marker = L.marker([38.246193, 21.735132]).addTo(map);
+    // marker.bindPopup("<b> Πλατεία Γεωργίου </b>");
+    var list= [];
+    var weights = [];
+    coord.forEach( element => list.push( [ [element['latU'],element['lngU']], [ element['lat'], element['lon']] ] ));
+    coord.forEach( element => weights.push(element['weight']));
+    console.log(list, "list of Coordinates");
+    console.log(weights,"list of Weights");
+
+    var myLines = [{
+      "type": "MultiLineString",
+      "coordinates": list
+    }];
+
+    var myStyle = {
+      "color": "red",
+      // "weight": 10,
+      "opacity": 0.65
+    };
+
+
+
+    // L.geoJSON(myLines, {
+    //   style: myStyle
+    // }).addTo(map);
+
+    var multiPolyLineOptions = {color:'red'};
+    let i=0;
+    function blue(element) {
+      // console.log(weights[i]);
+      let weightOf = weights[i]/popular*10;
+      if (weightOf<0.1)
+        weightOf=0.1;
+      console.log(weightOf);
+      i++;
+      L.polyline(element,{ color:'red', weight:weightOf } ).addTo(map);
+      // console.log(element);
+
+    }
+
+    list.forEach(
+      function alpha (element)
+      {  
+        // if (!isNaN(weights) ){
+          blue(element, weights)
+      // }
+    }
+    );
+    // console.log(i);
+    // var multipolyline = L.polyline(list , myStyle);
+    // multipolyline.addTo(map);
+    // map.fitBounds(multipolyline.getBounds());
+
+
+  };
+
+  req.open("get", "visualizeDataAdmin.php", true);
+  req.send();
+
+</script>
+
+<section class='flex-center time-analysis'>
+<!--    <div class=" section-background form-group">-->
+<!--        <div class="col-md-12">-->
+
+            <div id="map"> </div>
+
+<!--        </div>-->
+<!--    </div>-->
+</section>
+
+
+
+
+
+
+
+
+<div id="contact" class="offset">
+  <footer class="foot container">
+    <div class="row">
+      <div class="col-md-4 col-sm-4 col-lg-4">
+        <div class="contactus">
+          <strong>Contact Us</strong>
+          <p>Phones:<br>
+            Afentaki Florentia : +306981045579<br>
+            Oikonomopoulou Emma : +306988452227<br>
+            Sigourou Alkisti : +306975469110<br>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 col-lg-4 text-center">
+        <div class="cookies">
+          <br>
+          <br>
+          <br>
+          <a href="cookiesa.html" class="cookies"><strong>Cookies</strong></a>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 col-lg-4 text-right">
+        <div class="privacy">
+          <br>
+          <br>
+          <br>
+          <a href="termsa.html" class="privacy"><strong>Terms &amp; Conditions</strong></a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="socket col-md-12 col-sm-12 col-lg-12">
+    &copy FEA Developers.
+
+  </footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+.navbar-brand img {
+    width: 100%;
+    height: 5.5rem;
+}
+.navbar-brand{
+    border: 1px solid #a494ac;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+    text-align:center;
+}
+.navbar{
+    background-color: #5c4b67!important;
+    font-family : Arial;
+}
+.navbar-nav li{
+    padding-right: .75rem;
+}
+.navbar-dark .navbar-nav .nav-link{
+    color : whitesmoke;
+    padding-top: .8rem;
+}
+.title{
+    color:#ffffff;
+    font-weight: bold;
+    letter-spacing: 5px;
+    font-size: 25px;
+    font-family: monospace,Century Gothic,Monaco,Geneva,Arial;
+    float: left;
+    padding-left: 0;
+    text-shadow: .1rem .1rem .8rem #a494ac;
+}
+body{
+    overflow-x: hidden;
+    color: #a494ac;
+    background-color: #5c4b67;
+    text-align: center;
+}
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link:hover{
+    color : #a494ac;
+}
+.home-inner{
+    background-image: url(back.png);
+    filter: blur(4.5px);
+}
+.foot {
+    color:#ffffff;
+}
+.main-form{
+    width:550px;
+    margin-top: 30px;
+    background-color:#a494ac;
+    width:50%;
+    max-width:100%;
+    position:absolute;
+    top:38%;
+    z-index: 1;
+    color: #5c4b67;
+    text-align:center;
+}
+.btn-lg{
+    border-width: medium;
+    border-radius: 12px;
+    padding : .6rem 1.3rem;
+    font-size: 1.1rem;
+    color: white;
+    background-color:#a494ac;
+}
+.btn-lg:hover{
+    color:#5c4b67;
+}
+.caption h1{
+    font-size : 4rem;
+    text-shadow: .1rem .1rem .8rem #a494ac;
+    padding-bottom: 2rem;
+}
+.caption h3{
+    font-size : 4rem;
+    text-shadow: .1rem .1rem .8rem #a494ac;
+    padding-bottom: 2rem;
+}
+.caption{
+    width:100%;
+    max-width:100%;
+    position:absolute;
+    top:38%;
+    z-index: 1;
+    color: #5c4b67;
+}
+
+.caption la bel{
+    font-size : 1.2rem;
+    text-shadow: .1rem .1rem .5rem #a494ac;
+    padding-bottom: 1rem;
+}
+
+
+.caption input{
+    background-color: #a494ac;
+    color:white;
+}
+.caption ::placeholder{
+    color:white;
+}
+.caption input:focus {
+    color:#a494ac;
+    outline: 2px solid #a494ac;
+}
+/* .caption #username{
+    border-radius: 25px;
+} */
+.nav-link img{
+    width: 40px;
+    height: 40px;
+}
+.foot a{
+    color:white;
+}
+
+
+
+
+
+
+.btn-group{
+    background-color: whitesmoke; /* Green background */
+    border: 1px solid darkgrey; /* Green border */
+
+    color: white; /* White text */
+    padding: 24px 12px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+}
+
+
+
+.btn-group button {
+    background-color: slategrey;  /* Green background */
+    border: 1px solid whitesmoke; /* Green border */
+    color: antiquewhite; /* White text */
+    padding: 24px 12px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+}
+
+.btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: #80bdff;
+}
+
+/* Add a background color on hover */
+.btn-group button:focus {
+    background-color: darkgrey;
+}

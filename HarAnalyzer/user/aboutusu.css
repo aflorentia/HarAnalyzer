@@ -1,0 +1,133 @@
+.navbar-brand img {
+    width: 100%;
+    height: 5.5rem;
+  }
+  .navbar-brand{
+    border: 1px solid #a494ac;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+    text-align:center;
+  }
+  .navbar{
+      background-color: #5c4b67!important;
+      font-family : Arial;  
+  }
+  .navbar-nav li{
+    padding-right: .7rem;
+  }
+  .navbar-dark .navbar-nav .nav-link{
+    color : whitesmoke;
+    padding-top: .8rem;
+  }
+  .title{
+      color:#ffffff;
+      font-weight: bold;
+      letter-spacing: 5px;
+      font-size: 25px;
+      font-family: monospace,Century Gothic,Monaco,Geneva,Arial;
+      float: left;
+      padding-left: 0;
+      text-shadow: .1rem .1rem .8rem #a494ac;
+  }
+  body{
+    overflow-x: hidden;
+    color: #a494ac;
+    background-color: #5c4b67;
+    text-align: center;
+  }
+  .navbar-dark .navbar-nav .nav-link.active,
+  .navbar-dark .navbar-nav .nav-link:hover{
+    color : #a494ac;
+  }
+  .home-inner{
+    background-image: url(back.png);
+    filter: blur(1px);
+  }
+  .foot {
+    color:#ffffff;
+  }
+  .main-form{
+    width:550px;
+    margin-top: 30px;
+    background-color:#a494ac;
+    width:50%;
+    max-width:100%;
+    position:absolute;
+    top:38%;
+    z-index: 1;
+    color: #5c4b67;
+    text-align:center;
+  }
+  .btn-lg{
+    border-width: medium;
+    border-radius: 12px;
+    padding : .6rem 1.3rem;
+    font-size: 1.1rem;
+    color: white;
+    background-color:#a494ac;
+  }
+  .btn-lg:hover{
+    color:#5c4b67;
+  }
+  .caption h1{
+    font-size : 2rem;
+    text-shadow: .1rem .1rem .8rem #a494ac;
+    padding-bottom: 1rem;
+  }
+  .caption h2{
+    font-size : 1.5rem;
+    text-shadow: .1rem .1rem .8rem #a494ac;
+    padding-bottom: 1rem;
+  }
+  .caption{
+    width:90%;
+    max-width:100%;
+    position:absolute;
+    top:40%;
+    left: 5%;
+    z-index: 1;
+    color:white;
+    box-shadow:  #a494ac ;
+    text-align: center;
+    border: 1.5px solid  #5c4b67;
+    background-color:#5c4b67 ;
+    padding-bottom: 10rem;
+    padding-top: 7rem;
+  }
+  .caption label{
+    font-size : 1.2rem;
+    text-shadow: .1rem .1rem .5rem #a494ac;
+    padding-bottom: 1rem;
+  }
+ 
+
+.caption input{
+    background-color: #a494ac;
+    color:white;
+}
+.caption ::placeholder{
+    color:white;
+}
+.caption input:focus {
+    color:#a494ac;
+    outline: 2px solid #a494ac;  
+}
+/* .caption #username{
+    border-radius: 25px;
+} */
+.emma img{
+    width: 200px;
+    height: 200px;
+}
+.al img{
+  width: 200px;
+  height: 200px;
+}
+.flo img{
+  width: 200px;
+  height: 200px;
+}
+.foot a{
+  color:white;
+}

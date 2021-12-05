@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Har Analyzer</title>
+    <link rel="stylesheet" href="bootstrap-4.1.3-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/fixed.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body data-target="#navbarResponsive">
+<div id="signup">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container-fluid ">
+            <a class="navbar-brand" href="index1.html"><img src="logo.png"></a>
+            <div class="title">
+                <div>Har Analyzer</div>
+            </div>
+            <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon "></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="index1.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="aboutHAR.html" class="nav-link">More About Har</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="aboutus.html" class="nav-link">About Us</a>
+                    </li>
+                    <li class="nav-item" >
+                        <a href="login.html" class="nav-link">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="signup.html" class="nav-link">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="landing">
+        <div class="home-wrap">
+            <div class="home-inner"></div>
+        </div>
+    </div>
+    
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script> var errors = 0; </script>
+<section id="form" class="caption text-center offset ">
+
+    <form id="signupForm" class="mainform" action="Signup.php" method="post">
+
+            <div class="form-group ">
+                <h1>Sign Up!</h1>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" placeholder="Enter Username" id="username" required class="form-control" >
+            </div>
+
+            <div class="form-group ">
+                <label for="email">Email</label>
+                <input type="email" name="email" placeholder="Enter E-mail" id="email" required class="form-control" >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" placeholder="Enter Password"   id="password" required class="form-control"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number, one uppercase, one lowercase letter, and at least 8 or more characters">
+<!--                                                                                                                               //pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[#$*&@]).{8,}"-->
+            </div>
+
+            <div id="message">
+                <h3>Password must contain the following:</h3>
+                <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                <p id="number" class="invalid">A <b>number</b></p>
+                <p id="symbol" class="invalid">A <b>character</b></p>
+                <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+              </div>
+
+
+            <div class="form-group">
+                <label for="pswRepeat">Repeat Password</label>
+                <input type="password" name="pswRepeat" placeholder="Enter Password Again"   id="pswRepeat" required class="form-control">
+                <span id='message2'></span>
+<!--                //pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[#$*&@]).{8,}"-->
+            </div>
+
+        <script>
+            $('#password, #pswRepeat').on('keyup', function () {
+                if ($('#password').val() == $('#pswRepeat').val()) {
+                    $('#message2').html('Matching').css('color', 'green');
+                    errors=0;
+                } else{
+                    $('#message2').html('Not Matching').css('color', 'red');
+                    errors=1;
+                }
+            });
+        </script>
+        <script>
+            $(document).ready(function(){
+                console.log(errors);
+
+                $("input").keyup(function(){
+                // $("#submit").click(function(){
+                    console.log(errors);
+
+                    if (errors === 0 ) {
+                        console.log(errors);
+                        $("#submit").css("visibility", "visible");
+                        $("messageErrors").style.display = "none";
+
+
+                    }
+                    else {
+                        $("#submit").css("visibility", "hidden");
+
+                        $(window).keydown(function (event) {
+                            if (event.keyCode == 13) {
+                                event.preventDefault();
+                                return false;
+                            }
+                            $(this).unbind('keydown').keydown()
+
+                        });
+
+
+                    }
+
+
+                });
+            })
+            // function checkErrors(){
+            //     if ( errors===0) {
+            //         console.log("you are sent");
+            //         document.getElementById("signupForm").submit();
+            //     }
+            //     else {
+            //         console.log("you are NOT sent");
+            //         $("messageErrors").html('Errors were made').css('color', 'red');
+            //     }
+            // }
+        </script>
+              <script>
+              let myInput = document.getElementById("password");
+              let letter = document.getElementById("letter");
+              let capital = document.getElementById("capital");
+              let number = document.getElementById("number");
+              let symbol = document.getElementById("symbol");
+              let length = document.getElementById("length");
+              
+              // When the user clicks on the password field, show the message box
+              myInput.onfocus = function() {
+                document.getElementById("message").style.display = "block";
+              }
+              
+              // When the user clicks outside of the password field, hide the message box
+              myInput.onblur = function() {
+                document.getElementById("message").style.display = "none";
+              }
+              
+              // When the user starts to type something inside the password field
+              myInput.onkeyup = function() {
+                // Validate lowercase letters
+                const lowerCaseLetters = /[a-z]/g;
+                if(myInput.value.match(lowerCaseLetters)) {  
+                  letter.classList.remove("invalid");
+                  letter.classList.add("valid");
+                } else {
+                  letter.classList.remove("valid");
+                  letter.classList.add("invalid");
+                }
+                
+                // Validate capital letters
+                const upperCaseLetters = /[A-Z]/g;
+                if(myInput.value.match(upperCaseLetters)) {  
+                  capital.classList.remove("invalid");
+                  capital.classList.add("valid");
+                } else {
+                  capital.classList.remove("valid");
+                  capital.classList.add("invalid");
+                }
+              
+                // Validate numbers
+                const numbers = /[0-9]/g;
+                if(myInput.value.match(numbers)) {  
+                  number.classList.remove("invalid");
+                  number.classList.add("valid");
+                } else {
+                  number.classList.remove("valid");
+                  number.classList.add("invalid");
+                }
+                //Validate character
+                  const sym = /[#$*&@!%^<>./]/g;
+                  if(myInput.value.match(sym)) {
+                  symbol.classList.remove("invalid");
+                  symbol.classList.add("valid");
+                } else {
+                  symbol.classList.remove("valid");
+                  symbol.classList.add("invalid");
+                }
+                
+                // Validate length
+                if(myInput.value.length >= 8) {
+                  length.classList.remove("invalid");
+                  length.classList.add("valid");
+                } else {
+                  length.classList.remove("valid");
+                  length.classList.add("invalid");
+                }
+              }
+              </script>
+            <div class="form-ckeck">
+                <input type="checkbox" id="accept-terms" required class="form-check-input">
+                <label for="accept-terms" class="form-check-label">Accept Terms &amp; Conditions</label>  
+            </div>
+
+        <button type="submit" id="submit" class="submit btn btn-outline btn-lg" style="visibility: hidden" >Sign Up</button>
+<!--        <a class="submit btn btn-outline btn-lg" href="file:///Users/emmaeconomopoulou/Desktop/ceid/7ο%20εξάμηνο/Web/user.html">Submit</a>-->
+
+
+    </form>
+
+
+
+
+
+
+
+</section>
+    <div id="contact" class="offset">
+    <footer class="foot container">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-lg-4">
+                <div class="contactus">
+                    <strong>Contact Us</strong>
+                    <p>Phones:<br>
+                    Afentaki Florentia : +306981045579<br>
+                    Oikonomopoulou Emma : +306988452227<br>
+                    Sigourou Alkisti : +306975469110<br>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-lg-4 text-center">
+                <div class="cookies">
+                    <br>
+                    <br>
+                    <br>
+                    <a href="cookies.html" class="cookies"><strong>Cookies</strong></a>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-lg-4 text-right">
+                <div class="privacy">
+                    <br>
+                    <br>
+                    <br>
+                    <a href="terms.html" class="privacy"><strong>Terms &amp; Conditions</strong></a>
+                </div>
+            </div>
+        </div>
+        
+        <hr class="socket col-md-12 col-sm-12 col-lg-12">
+        &copy FEA Developers.
+
+    </footer>
+    </div>
+
+</body>
+</html>
